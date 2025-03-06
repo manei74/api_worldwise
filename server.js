@@ -19,6 +19,16 @@ app.get("/cities", (req, res) => {
   });
 });
 
+app.get("/cities/:id", (req, res) => {
+  const cityId = req.params.id;
+  const city = cities[cityId]; // Assuming cities is an object keyed by IDs
+  if (city) {
+    res.json(city);
+  } else {
+    res.status(404).json({ error: "City not found" });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
